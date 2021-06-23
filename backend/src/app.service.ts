@@ -11,10 +11,10 @@ export class AppService {
   public battle(army1: number, army2: number) {
     this.dragons_army_1 = this.getRandomInt(100,1000);
     this.dragons_army_2 = this.getRandomInt(100,1000);
-    this.dragons_coefficient_army_1 = +army1 * 10 / 100; 
-    this.dragons_coefficient_army_2 = +army2 * 10 / 100; 
-    this.total_army_1 = +army1 + (this.dragons_army_1 * this.dragons_coefficient_army_1);
-    this.total_army_2 = +army2 + (this.dragons_army_2 * this.dragons_coefficient_army_2);
+    this.dragons_coefficient_army_1 = this.getCoefficient(army1);  
+    this.dragons_coefficient_army_2 = this.getCoefficient(army2);
+    this.total_army_1 = this.getTotal(army1, this.dragons_army_1, this.dragons_coefficient_army_1);
+    this.total_army_2 = this.getTotal(army2, this.dragons_army_2, this.dragons_coefficient_army_2);
     const result = this.total_army_1 > this.total_army_2 ? "Army 1" : "Army 2";
     
     return result;
@@ -24,6 +24,14 @@ export class AppService {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  private getCoefficient(army: number) {
+    return +army * 10 / 100;
+  }
+
+  private getTotal(army: number, dragons: number, coefficient: number) {
+    return +army + (dragons * coefficient);
   }
   
 }
