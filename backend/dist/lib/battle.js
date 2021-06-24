@@ -9,20 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppService = void 0;
+exports.Battle = void 0;
 const common_1 = require("@nestjs/common");
-const battle_1 = require("./lib/battle");
-let AppService = class AppService {
-    constructor(battle) {
-        this.battle = battle;
+const army_1 = require("./army");
+let Battle = class Battle {
+    constructor(army) {
+        this.army = army;
+        this.total_army_1 = 0;
+        this.total_army_2 = 0;
     }
-    onBattle(army1, army2) {
-        return this.battle.resolveBattle(army1, army2);
+    resolveBattle(army1, army2) {
+        this.total_army_1 = this.army.getTotal(army1);
+        this.total_army_2 = this.army.getTotal(army2);
+        const result = this.total_army_1 > this.total_army_2 ? "Army 1" : "Army 2";
+        return result;
     }
 };
-AppService = __decorate([
+Battle = __decorate([
     common_1.Injectable(),
-    __metadata("design:paramtypes", [battle_1.Battle])
-], AppService);
-exports.AppService = AppService;
-//# sourceMappingURL=app.service.js.map
+    __metadata("design:paramtypes", [army_1.Army])
+], Battle);
+exports.Battle = Battle;
+//# sourceMappingURL=battle.js.map

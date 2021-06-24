@@ -1,0 +1,1 @@
+//# sourceMappingURL=soldier.js.map

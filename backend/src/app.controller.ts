@@ -14,6 +14,6 @@ export class AppController {
   }
 
   private battle(army1: number, army2: number) {
-    return this.appService.battle(army1, army2);
+    return this.appService.onBattle(army1, army2);
   }
 }

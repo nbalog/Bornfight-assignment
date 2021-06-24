@@ -23,7 +23,7 @@ let AppController = class AppController {
         return this.battle(army1, army2);
     }
     battle(army1, army2) {
-        return this.appService.battle(army1, army2);
+        return this.appService.onBattle(army1, army2);
     }
 };
 __decorate([
